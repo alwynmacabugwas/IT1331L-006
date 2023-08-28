@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Animal Information</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Animal Information</h1>
+    <div id="animal-table"></div>
+
+    <script>
+        let tableHTML = '<table>';
+        // creating of table. Table was declared as a let variable.
+
+        tableHTML += '<tr><th>Animal ID </th><th>Animal Name</th><th>Owner Name</th><th>Weight</th><th>Age</th><th>Age Bracket</tr>';
+        // adding of table row and table header to the table. 
+        // as table is declared as a let variable, it is possible to add table rows and table header through operations.
+
+        const animals = [
+            { id: 1, name: "Fluffy", owner: "Alice", weight: 12, age: 3 },
+            { id: 2, name: "Max", owner: "Bob", weight: 20, age: 4 },
+            { id: 3, name: "Dug", owner: "Carl", weight: 2, age: 0.5 },
+            { id: 4, name: "Arf", owner: "Tao Lin", weight: 3, age: 0.9 },
+            { id: 5, name: "Kupa", owner: "Popol", weight: 70, age: 20 },
+            { id: 6, name: "Jacob", owner: "Renesmee", weight: 86, age: 16 },
+            { id: 7, name: "Sisu", owner: "Alwyn", weight: 25, age: 11 },
+            { id: 8, name: "Daisy", owner: "John Wick", weight: 12, age: 15 },
+            { id: 9, name: "Cerberus", owner: "Hades", weight: 666, age: 99 },
+            { id: 10, name: "Slinky", owner: "Andy", weight: 1, age: 3 },
+            { id: 11, name: "Bolt", owner: "Penny", weight: 4, age: 0.5 },
+            { id: 12, name: "Marley", owner: "John Grogan", weight: 22, age: 14 },
+            { id: 13, name: "Clifford", owner: "Emily", weight: 100, age: 13 },
+            { id: 14, name: "Sherman", owner: "Mr. Peabody", weight: 33, age: 7 },
+            { id: 15, name: "Dogmeat", owner: "Nuke", weight: 20, age: 15.1 },
+            { id: 16, name: "Lady", owner: "Darling", weight: 1, age: 0.1 }
+        ];
+        // declaration of constant variable array. Inside the array, there are different data types.
+
+        function getAgeBracket(age){
+        // creation of function getAgeBracket. It has one parameter. which is the age.
+            let ageBracket;
+            // declaration of let variable ageBracket.
+            if(age > 0 && age < 1){
+            // if statement for different ageBracket.
+                ageBracket = "Puppy";
+                // first if statement. If age is greater than 0 and less than 1, agebracket is Puppy.
+            }
+            else if(age <= 10)
+            // else if statement. If age is less than of equal to 10.
+            {
+                ageBracket = "Adult";
+                // if age is less than or equal to 10, ageBracket is Adult.
+            }
+            else if(age <= 15)
+            // else if statement. If age is less than or equal to 15.
+            {
+                ageBracket = "Senior";
+                // if age is less than or equal to 15, ageBracket is Senior.
+            }
+            else
+            // else statement. Since there is no age limit for the last scenario, I decided to write it as an else statement.
+            {
+                ageBracket = "Geriatric";
+                // if age is greater than 15, ageBracket is Geriatric.
+            }
+            return ageBracket;
+            // return ageBracket.
+        }
+
+        for( const _animals of animals){
+        // for each loop (?). For a reason unknown to me, i get undefined when I use the usual for loop statement (for(let i = 0; i < animals.length; i++)).
+        // when I try to call animals.id for example, i get an uncaught error, cannot read properties of undefined (reading '0').
+            const ageBracketReal = getAgeBracket(_animals.age);
+            // declaring of ageBracket using the getAgeBracket function.
+            tableHTML += '<tr><th>' + `${_animals.id}` + '</th><th>' + `${_animals.name}` + '</th><th>' + `${_animals.owner}` + '</th><th>' + `${_animals.weight}` + '</th><th>' + `${_animals.age}` + '</th><th>' + ageBracketReal + '</th></tr>'; 
+            // adding of table rows and table headers with animal info.
+        }    
+        
+         tableHTML += '</table>';
+         // closing of table tag.
+         document.getElementById('animal-table').innerHTML = tableHTML;
+         // calling of table.
+
+    </script>
+</body>
+</html>
